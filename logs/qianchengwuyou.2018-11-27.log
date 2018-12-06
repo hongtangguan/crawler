@@ -1,0 +1,288 @@
+[2018-11-27 20:54:27] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 16376 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 20:54:27] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 20:54:28] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 20:54:28] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.444 seconds (JVM running for 2.59)
+[2018-11-27 20:54:50] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 15344 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 20:54:50] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 20:54:51] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 20:54:51] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.562 seconds (JVM running for 2.519)
+[2018-11-27 20:54:52] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 20:55:03] [WARN ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - download page https://www.lagou.com/zhaopin/Java/?labelWords=label error
+org.apache.http.conn.ConnectTimeoutException: Connect to 125.33.52.181:4573 [/125.33.52.181] failed: connect timed out
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:151)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:373)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:402)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:237)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:185)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at us.codecraft.webmagic.downloader.HttpClientDownloader.download(HttpClientDownloader.java:85)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:404)
+	at us.codecraft.webmagic.Spider.access$000(Spider.java:61)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:320)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 16 common frames omitted
+[2018-11-27 20:55:08] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 20:55:08] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider search.51job.com started!
+[2018-11-27 20:55:08] [INFO ] [pool-2-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://search.51job.com/list/080200,000000,0000,00,9,99,java,2,1.html?lang=c&stype=&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&providesalary=99&lonlat=0%2C0&radius=-1&ord_field=0&confirmdate=9&fromType=&dibiaoid=0&address=&line=&specialarea=00&from=&welfare=
+[2018-11-27 20:55:24] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 18728 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 20:55:24] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 20:55:25] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 20:55:25] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.404 seconds (JVM running for 2.25)
+[2018-11-27 20:55:26] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 20:55:27] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 20:55:27] [ERROR] [pool-1-thread-1] in us.codecraft.webmagic.Spider - process request Request{url='https://www.lagou.com/zhaopin/Java/?labelWords=label', method='null', extras=null, priority=0, headers={}, cookies={}} error
+java.lang.IllegalArgumentException: String input must not be null
+	at org.jsoup.helper.Validate.notNull(Validate.java:26)
+	at org.jsoup.parser.TreeBuilder.initialiseParse(TreeBuilder.java:29)
+	at org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:42)
+	at org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)
+	at org.jsoup.parser.Parser.parse(Parser.java:100)
+	at org.jsoup.Jsoup.parse(Jsoup.java:58)
+	at com.juban.task.boss.BossJobProcessor.saveJobInfo(BossJobProcessor.java:87)
+	at com.juban.task.boss.BossJobProcessor.process(BossJobProcessor.java:59)
+	at us.codecraft.webmagic.Spider.onDownloadSuccess(Spider.java:414)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:406)
+	at us.codecraft.webmagic.Spider.access$000(Spider.java:61)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:320)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2018-11-27 20:55:27] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 20:55:27] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider search.51job.com started!
+[2018-11-27 20:55:27] [INFO ] [pool-2-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://search.51job.com/list/080200,000000,0000,00,9,99,java,2,1.html?lang=c&stype=&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&providesalary=99&lonlat=0%2C0&radius=-1&ord_field=0&confirmdate=9&fromType=&dibiaoid=0&address=&line=&specialarea=00&from=&welfare=
+[2018-11-27 20:55:32] [INFO ] [pool-2-thread-6] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://jobs.51job.com/hangzhou-jgq/106236244.html?s=01&t=0
+[2018-11-27 20:55:32] [INFO ] [pool-2-thread-5] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://jobs.51job.com/hangzhou-xhq/107898660.html?s=01&t=0
+[2018-11-27 20:55:32] [INFO ] [pool-2-thread-4] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://jobs.51job.com/hangzhou-bjq/108774596.html?s=01&t=0
+[2018-11-27 20:55:32] [INFO ] [pool-2-thread-3] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://jobs.51job.com/hangzhou-bjq/108778261.html?s=01&t=0
+[2018-11-27 20:55:32] [INFO ] [pool-2-thread-2] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://jobs.51job.com/hangzhou-xhq/40964525.html?s=01&t=1
+[2018-11-27 20:55:32] [INFO ] [pool-2-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://jobs.51job.com/hangzhou/108380951.html?s=01&t=0
+[2018-11-27 20:55:32] [INFO ] [pool-2-thread-8] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://jobs.51job.com/hangzhou-xcq/108768456.html?s=01&t=0
+[2018-11-27 20:55:32] [INFO ] [pool-2-thread-7] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://jobs.51job.com/hangzhou-xhq/108770793.html?s=01&t=0
+[2018-11-27 20:55:32] [INFO ] [pool-2-thread-9] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://jobs.51job.com/hangzhou-yhq/108760591.html?s=01&t=0
+[2018-11-27 20:55:32] [INFO ] [pool-2-thread-10] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://jobs.51job.com/hangzhou-gsq/105097776.html?s=01&t=0
+[2018-11-27 20:55:32] [INFO ] [pool-2-thread-3] in com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2018-11-27 20:55:33] [INFO ] [pool-2-thread-3] in com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2018-11-27 20:56:07] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 9048 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 20:56:07] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 20:56:08] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 20:56:08] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.551 seconds (JVM running for 2.406)
+[2018-11-27 20:56:09] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 20:56:10] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 20:56:10] [ERROR] [pool-1-thread-1] in us.codecraft.webmagic.Spider - process request Request{url='https://www.lagou.com/zhaopin/Java/?labelWords=label', method='null', extras=null, priority=0, headers={}, cookies={}} error
+java.lang.IllegalArgumentException: String input must not be null
+	at org.jsoup.helper.Validate.notNull(Validate.java:26)
+	at org.jsoup.parser.TreeBuilder.initialiseParse(TreeBuilder.java:29)
+	at org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:42)
+	at org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)
+	at org.jsoup.parser.Parser.parse(Parser.java:100)
+	at org.jsoup.Jsoup.parse(Jsoup.java:58)
+	at com.juban.task.boss.BossJobProcessor.saveJobInfo(BossJobProcessor.java:87)
+	at com.juban.task.boss.BossJobProcessor.process(BossJobProcessor.java:59)
+	at us.codecraft.webmagic.Spider.onDownloadSuccess(Spider.java:414)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:406)
+	at us.codecraft.webmagic.Spider.access$000(Spider.java:61)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:320)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2018-11-27 20:56:10] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 20:57:46] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 10400 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 20:57:46] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 20:57:47] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 20:57:47] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.447 seconds (JVM running for 2.259)
+[2018-11-27 20:57:49] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 20:57:49] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 20:57:49] [ERROR] [pool-1-thread-1] in us.codecraft.webmagic.Spider - process request Request{url='https://www.lagou.com/zhaopin/Java/?labelWords=label', method='null', extras=null, priority=0, headers={}, cookies={}} error
+java.lang.IllegalArgumentException: String input must not be null
+	at org.jsoup.helper.Validate.notNull(Validate.java:26)
+	at org.jsoup.parser.TreeBuilder.initialiseParse(TreeBuilder.java:29)
+	at org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:42)
+	at org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)
+	at org.jsoup.parser.Parser.parse(Parser.java:100)
+	at org.jsoup.Jsoup.parse(Jsoup.java:58)
+	at com.juban.task.boss.BossJobProcessor.saveJobInfo(BossJobProcessor.java:87)
+	at com.juban.task.boss.BossJobProcessor.process(BossJobProcessor.java:59)
+	at us.codecraft.webmagic.Spider.onDownloadSuccess(Spider.java:414)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:406)
+	at us.codecraft.webmagic.Spider.access$000(Spider.java:61)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:320)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2018-11-27 20:57:49] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 20:59:56] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 22072 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 20:59:56] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 20:59:57] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 20:59:57] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.487 seconds (JVM running for 2.363)
+[2018-11-27 20:59:58] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 20:59:59] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 20:59:59] [ERROR] [pool-1-thread-1] in us.codecraft.webmagic.Spider - process request Request{url='https://www.lagou.com/zhaopin/Java/?labelWords=label', method='null', extras=null, priority=0, headers={}, cookies={}} error
+java.lang.IllegalArgumentException: String input must not be null
+	at org.jsoup.helper.Validate.notNull(Validate.java:26)
+	at org.jsoup.parser.TreeBuilder.initialiseParse(TreeBuilder.java:29)
+	at org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:42)
+	at org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)
+	at org.jsoup.parser.Parser.parse(Parser.java:100)
+	at org.jsoup.Jsoup.parse(Jsoup.java:58)
+	at com.juban.task.boss.BossJobProcessor.saveJobInfo(BossJobProcessor.java:87)
+	at com.juban.task.boss.BossJobProcessor.process(BossJobProcessor.java:59)
+	at us.codecraft.webmagic.Spider.onDownloadSuccess(Spider.java:414)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:406)
+	at us.codecraft.webmagic.Spider.access$000(Spider.java:61)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:320)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2018-11-27 20:59:59] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 21:00:39] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 13764 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 21:00:39] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 21:00:40] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 21:00:40] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.576 seconds (JVM running for 2.43)
+[2018-11-27 21:00:42] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 21:00:42] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 21:01:01] [ERROR] [pool-1-thread-1] in us.codecraft.webmagic.Spider - process request Request{url='https://www.lagou.com/zhaopin/Java/?labelWords=label', method='null', extras=null, priority=0, headers={}, cookies={}} error
+java.lang.IllegalArgumentException: String input must not be null
+	at org.jsoup.helper.Validate.notNull(Validate.java:26)
+	at org.jsoup.parser.TreeBuilder.initialiseParse(TreeBuilder.java:29)
+	at org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:42)
+	at org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)
+	at org.jsoup.parser.Parser.parse(Parser.java:100)
+	at org.jsoup.Jsoup.parse(Jsoup.java:58)
+	at com.juban.task.boss.BossJobProcessor.saveJobInfo(BossJobProcessor.java:87)
+	at com.juban.task.boss.BossJobProcessor.process(BossJobProcessor.java:59)
+	at us.codecraft.webmagic.Spider.onDownloadSuccess(Spider.java:414)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:406)
+	at us.codecraft.webmagic.Spider.access$000(Spider.java:61)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:320)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2018-11-27 21:01:01] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 21:04:33] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 9888 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 21:04:33] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 21:04:34] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 21:04:34] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.305 seconds (JVM running for 1.999)
+[2018-11-27 21:04:35] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 21:04:36] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 21:04:36] [ERROR] [pool-1-thread-1] in us.codecraft.webmagic.Spider - process request Request{url='https://www.lagou.com/zhaopin/Java/?labelWords=label', method='null', extras=null, priority=0, headers={}, cookies={}} error
+java.lang.IllegalArgumentException: String input must not be null
+	at org.jsoup.helper.Validate.notNull(Validate.java:26)
+	at org.jsoup.parser.TreeBuilder.initialiseParse(TreeBuilder.java:29)
+	at org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:42)
+	at org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)
+	at org.jsoup.parser.Parser.parse(Parser.java:100)
+	at org.jsoup.Jsoup.parse(Jsoup.java:58)
+	at com.juban.task.boss.BossJobProcessor.saveJobInfo(BossJobProcessor.java:87)
+	at com.juban.task.boss.BossJobProcessor.process(BossJobProcessor.java:59)
+	at us.codecraft.webmagic.Spider.onDownloadSuccess(Spider.java:414)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:406)
+	at us.codecraft.webmagic.Spider.access$000(Spider.java:61)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:320)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2018-11-27 21:04:36] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 21:05:35] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 10612 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 21:05:35] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 21:05:36] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 21:05:36] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.762 seconds (JVM running for 2.642)
+[2018-11-27 21:05:37] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 21:05:38] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 21:05:38] [ERROR] [pool-1-thread-1] in us.codecraft.webmagic.Spider - process request Request{url='https://www.lagou.com/zhaopin/Java/?labelWords=label', method='null', extras=null, priority=0, headers={}, cookies={}} error
+java.lang.IllegalArgumentException: String input must not be null
+	at org.jsoup.helper.Validate.notNull(Validate.java:26)
+	at org.jsoup.parser.TreeBuilder.initialiseParse(TreeBuilder.java:29)
+	at org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:42)
+	at org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)
+	at org.jsoup.parser.Parser.parse(Parser.java:100)
+	at org.jsoup.Jsoup.parse(Jsoup.java:58)
+	at com.juban.task.boss.BossJobProcessor.saveJobInfo(BossJobProcessor.java:86)
+	at com.juban.task.boss.BossJobProcessor.process(BossJobProcessor.java:58)
+	at us.codecraft.webmagic.Spider.onDownloadSuccess(Spider.java:414)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:406)
+	at us.codecraft.webmagic.Spider.access$000(Spider.java:61)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:320)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2018-11-27 21:05:38] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 21:08:41] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 260 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 21:08:41] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 21:08:42] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 21:08:42] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.434 seconds (JVM running for 2.263)
+[2018-11-27 21:08:44] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 21:08:44] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 21:19:35] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 12380 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 21:19:35] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 21:19:36] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 21:19:36] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.491 seconds (JVM running for 2.385)
+[2018-11-27 21:19:38] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 21:19:38] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 21:19:43] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 21:20:23] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 26108 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 21:20:23] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 21:20:24] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 21:20:25] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.445 seconds (JVM running for 2.369)
+[2018-11-27 21:20:26] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 21:20:26] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 21:21:25] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 3616 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 21:21:25] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 21:21:26] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 21:21:26] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.363 seconds (JVM running for 2.189)
+[2018-11-27 21:21:27] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 21:21:28] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 21:21:40] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 21:28:40] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 328 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 21:28:40] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 21:28:41] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 21:28:41] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.65 seconds (JVM running for 2.632)
+[2018-11-27 21:28:43] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 21:28:43] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 21:28:48] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 21:29:08] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 16068 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 21:29:08] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 21:29:10] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 21:29:10] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.916 seconds (JVM running for 3.0)
+[2018-11-27 21:29:11] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 21:29:12] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 21:29:17] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 21:30:57] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 21:30:57] [INFO ] [pool-2-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/?labelWords=label
+[2018-11-27 21:31:02] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 21:31:57] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 19224 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 21:31:57] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 21:31:58] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 21:31:58] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.502 seconds (JVM running for 2.334)
+[2018-11-27 21:31:59] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 21:32:00] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/2/?filterOption=2
+[2018-11-27 21:32:05] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com closed! 1 pages downloaded.
+[2018-11-27 21:32:23] [INFO ] [main] in com.juban.CrawlerApplication - Starting CrawlerApplication on HZO-NB10070436 with PID 21292 (C:\workproject\crawler\target\classes started by 10070436 in C:\workproject\crawler)
+[2018-11-27 21:32:23] [INFO ] [main] in com.juban.CrawlerApplication - No active profile set, falling back to default profiles: default
+[2018-11-27 21:32:24] [INFO ] [main] in o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[2018-11-27 21:32:25] [INFO ] [main] in com.juban.CrawlerApplication - Started CrawlerApplication in 1.468 seconds (JVM running for 2.314)
+[2018-11-27 21:32:26] [INFO ] [scheduling-1] in us.codecraft.webmagic.Spider - Spider www.lagou.com started!
+[2018-11-27 21:32:26] [INFO ] [pool-1-thread-1] in u.c.webmagic.downloader.HttpClientDownloader - downloading page success https://www.lagou.com/zhaopin/Java/2/?filterOption=2
