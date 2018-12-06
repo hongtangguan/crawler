@@ -168,7 +168,7 @@ public class LiePinJobProcessor implements PageProcessor {
 
 
         List<Selectable> nodes = page.getHtml().css("div.new-compwrap ul.new-compintro li").nodes();
-        String companyIndustry = ""; //行业
+        String companyIndustry = ""; //行业.
         String companyFinancing = "";//融资情况
         String companyPeople = ""; //公司人数
         String jobAddress = "";//地址
