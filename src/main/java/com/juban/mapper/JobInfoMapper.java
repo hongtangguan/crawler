@@ -2,6 +2,7 @@ package com.juban.mapper;
 
 import com.juban.pojo.GetAllJobsRequestDto;
 import com.juban.pojo.JobInfo;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -20,4 +21,7 @@ public interface JobInfoMapper {
 
 
     List<JobInfo> getAllJobs(GetAllJobsRequestDto params);
+
+    @Select("select * from job_info")
+    List<JobInfo> getAllJob();
 }

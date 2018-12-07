@@ -11,14 +11,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.downloader.HttpClientDownloader;
 import us.codecraft.webmagic.processor.PageProcessor;
-import us.codecraft.webmagic.proxy.Proxy;
-import us.codecraft.webmagic.proxy.SimpleProxyProvider;
 import us.codecraft.webmagic.scheduler.BloomFilterDuplicateRemover;
 import us.codecraft.webmagic.scheduler.QueueScheduler;
 import us.codecraft.webmagic.selector.Html;
@@ -28,7 +24,7 @@ import java.util.Date;
 import java.util.List;
 
 
-@Component
+//@Component
 public class LiePinJobProcessor implements PageProcessor {
 
     private Logger logger = LoggerFactory.getLogger(LiePinJobProcessor.class);
@@ -48,28 +44,13 @@ public class LiePinJobProcessor implements PageProcessor {
     //private String url = "https://www.liepin.com/zhaopin/?init=1&imscid=R000000058&d_sfrom=search_fp_bar&key=java";
     //https://www.liepin.com/zhaopin/?isAnalysis=&dqs=&pubTime=&jobTitles=410022&salary=&industryType=&compscale=&key=&init=-1&searchType=1&headckid=caa8ebff308ddde7&compkind=&fromSearchBtn=2&sortFlag=15&ckid=caa8ebff308ddde7&degradeFlag=0&jobKind=&industries=&clean_condition=&siTag=1B2M2Y8AsgTpgAmY7PhCfg~fA9rXquZc5IkJpXC-Ycixw&d_sfrom=search_prime&d_ckId=83ae7ef43461f651059fc62900160d72&d_curPage=10&d_pageSize=40&d_headId=83ae7ef43461f651059fc62900160d72&curPage=0
     //private String url = "https://www.liepin.com/zhaopin/?init=-1&headckid=fc904682675eef4d&fromSearchBtn=2&imscid=R000000058&ckid=fc904682675eef4d&degradeFlag=0&key=java&siTag=k_cloHQj_hyIn0SLM9IfRg~fA9rXquZc5IkJpXC-Ycixw&d_sfrom=search_fp_bar&d_ckId=63ed22dfdda2d25375e7009a00704db4&d_curPage=0&d_pageSize=40&d_headId=63ed22dfdda2d25375e7009a00704db4&curPage=0";
-    //前端private String url = "https://www.liepin.com/zhaopin/?init=-1&headckid=b1494eba38074729&fromSearchBtn=2&sfrom=click-pc_homepage-centre_searchbox-search_new&ckid=b1494eba38074729&degradeFlag=0&key=web%E5%89%8D%E7%AB%AF&siTag=NIyIsvzhsqTcohrdx6m1EA~fA9rXquZc5IkJpXC-Ycixw&d_sfrom=search_fp&d_ckId=af9da93233dbd2857ed7933f5af31d1f&d_curPage=0&d_pageSize=40&d_headId=af9da93233dbd2857ed7933f5af31d1f&curPage=0";
-
-    //测试 private String url = "https://www.liepin.com/zhaopin/?industries=&dqs=&salary=&jobKind=&pubTime=&compkind=&compscale=&industryType=&searchType=1&clean_condition=&isAnalysis=&init=1&sortFlag=15&flushckid=0&fromSearchBtn=1&headckid=b1494eba38074729&d_headId=af9da93233dbd2857ed7933f5af31d1f&d_ckId=af9da93233dbd2857ed7933f5af31d1f&d_sfrom=search_fp&d_curPage=0&d_pageSize=40&siTag=NIyIsvzhsqTcohrdx6m1EA~fA9rXquZc5IkJpXC-Ycixw&key=%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B%E5%B8%88";
-
-    //产品private String url = "https://www.liepin.com/zhaopin/?isAnalysis=&dqs=&pubTime=&salary=&industryType=&compscale=&key=%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86&init=-1&searchType=1&headckid=81e6f05b9e7c128a&compkind=&fromSearchBtn=2&sortFlag=15&ckid=81e6f05b9e7c128a&degradeFlag=0&jobKind=&industries=&clean_condition=&siTag=i9Jq-FcUGTpC9QESjC5G3Q~fA9rXquZc5IkJpXC-Ycixw&d_sfrom=search_prime&d_ckId=352bf7fdf012bef62e9baca7f70818ae&d_curPage=1&d_pageSize=40&d_headId=352bf7fdf012bef62e9baca7f70818ae&curPage=0";
-    //品牌经理 private String url = "https://www.liepin.com/zhaopin/?isAnalysis=&dqs=&pubTime=&salary=&industryType=&compscale=&key=%E5%93%81%E7%89%8C%E7%BB%8F%E7%90%86&init=-1&searchType=1&headckid=2ad0007cb90bcda2&compkind=&fromSearchBtn=2&sortFlag=15&ckid=676a1cf9afbc3fb5&degradeFlag=0&jobKind=2&industries=&clean_condition=&siTag=iujurJQ7vEjz3mNq7rc4tA~ZmXRTG3Nx-lODupCxpuySA&d_sfrom=search_prime&d_ckId=60126c8c68679d18acc9a68321ed93e0&d_curPage=0&d_pageSize=40&d_headId=6f0e1117604a2d567e29d196fd259f7e&curPage=3";
-
-    //销售 private String url = "https://www.liepin.com/zhaopin/?isAnalysis=&init=-1&searchType=1&headckid=8c9deb054c8f4138&dqs=&pubTime=&compkind=&fromSearchBtn=2&salary=&sortFlag=15&ckid=8c9deb054c8f4138&degradeFlag=0&industryType=&jobKind=&industries=&compscale=&clean_condition=&key=%E9%94%80%E5%94%AE+%E7%89%A9%E6%B5%81&siTag=n6v_IVFg2-R7r4jGqQcijw~fA9rXquZc5IkJpXC-Ycixw&d_sfrom=search_prime&d_ckId=58a45f1bfd53d7555c9053f8b5db5fee&d_curPage=0&d_pageSize=40&d_headId=58a45f1bfd53d7555c9053f8b5db5fee&curPage=0";
-
-
-    //风控主管 private String url ="https://www.liepin.com/zhaopin/?industries=&dqs=&salary=&jobKind=&pubTime=&compkind=&compscale=&industryType=&searchType=1&clean_condition=&isAnalysis=&init=1&sortFlag=15&flushckid=0&fromSearchBtn=1&headckid=58e4938fe15ae0aa&d_headId=0c44c055885fee96923ef695a5f3efa8&d_ckId=0c44c055885fee96923ef695a5f3efa8&d_sfrom=search_prime&d_curPage=0&d_pageSize=40&siTag=bR3z8stfVx7MHUE-AnhTMQ~fA9rXquZc5IkJpXC-Ycixw&key=%E9%A3%8E%E6%8E%A7%E4%B8%BB%E7%AE%A1+%E7%89%A9%E6%B5%81%E4%BE%9B%E5%BA%94%E9%93%BE%E9%87%91%E8%9E%8D";
-    //仓促项目运营  private String url ="https://www.liepin.com/zhaopin/?isAnalysis=&init=-1&searchType=1&headckid=07a375fc01ee0e5e&flushckid=1&dqs=&pubTime=&compkind=&fromSearchBtn=2&salary=&sortFlag=15&ckid=07a375fc01ee0e5e&industryType=&jobKind=2&industries=&compscale=&clean_condition=&key=%E4%BB%93%E5%82%A8&siTag=h0-dMZA1TmSO6BklPvnkYQ~ZmXRTG3Nx-lODupCxpuySA&d_sfrom=search_prime&d_ckId=315a6e0ed6bef31a9ca23b2b8bfd5d85&d_curPage=0&d_pageSize=40&d_headId=315a6e0ed6bef31a9ca23b2b8bfd5d85";
-
-
-    //城市经理 private String url ="https://www.liepin.com/zhaopin/?isAnalysis=&init=-1&searchType=1&headckid=6e5ef7c1d0a98349&dqs=&pubTime=&compkind=&fromSearchBtn=2&salary=&sortFlag=15&ckid=6e5ef7c1d0a98349&degradeFlag=0&industryType=&jobKind=2&industries=&compscale=&clean_condition=&key=%E5%9F%8E%E5%B8%82%E7%BB%8F%E7%90%86+%E7%89%A9%E6%B5%81%E8%A1%8C%E4%B8%9A&siTag=ddctnJM0S3MU_2ukca2wuA~ZmXRTG3Nx-lODupCxpuySA&d_sfrom=search_prime&d_ckId=b9d6532b1aacd45597ab30229ccac95d&d_curPage=0&d_pageSize=40&d_headId=b9d6532b1aacd45597ab30229ccac95d&curPage=2";
 
     //B2B资源管理
-    private String url ="https://www.liepin.com/zhaopin/?isAnalysis=&init=-1&searchType=1&headckid=c1d9c2f0b9b61d2e&flushckid=1&dqs=&pubTime=&compkind=&fromSearchBtn=2&salary=&sortFlag=15&ckid=c1d9c2f0b9b61d2e&industryType=&jobKind=2&industries=&compscale=&clean_condition=&key=%E5%94%AF%E6%8D%B7&siTag=8BAL8v8gV1yBH3ddRQkajA~fA9rXquZc5IkJpXC-Ycixw&d_sfrom=search_prime&d_ckId=8588ad330ad78ab3341dc54d9bc16291&d_curPage=0&d_pageSize=40&d_headId=8588ad330ad78ab3341dc54d9bc16291";
+    private String url ="https://www.liepin.com/zhaopin/?industries=250&dqs=&salary=&jobKind=2&pubTime=&compkind=&compscale=&industryType=industry_09&searchType=1&clean_condition=&isAnalysis=&init=1&sortFlag=15&flushckid=0&fromSearchBtn=1&headckid=a28e5eb41d3ef97a&d_headId=b1dad03b1aa6838026b755e21cfe66a0&d_ckId=2816ba952df9ee0112ef56cc06fa7744&d_sfrom=search_prime&d_curPage=1&d_pageSize=40&siTag=i9Jq-FcUGTpC9QESjC5G3Q~ZJD6Eu9a0hYZwbIB9yR3VQ&key=%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%96%BD";
 
-    private static Integer countPage = 15;//总页码
+    private static Integer countPage = 10;//总页码
 
-    private static Integer temp = 3;//页码临时记录
+    private static Integer temp = 2;//页码临时记录
 
 
     //private static String string = HttpClientUtils.doGet("https://www.liepin.com/zhaopin/?init=1&imscid=R000000058&d_sfrom=search_fp_bar&key=java");
@@ -119,29 +100,30 @@ public class LiePinJobProcessor implements PageProcessor {
 
                 String s = html.css("i.icon").toString();
                 if (StringUtils.isNotBlank(s)) {
-                     s = Jsoup.parse(s).text();
-                    if (s.equals("猎")) {
-                        continue;
-                    }
+                    s = Jsoup.parse(s).text();
+                }
+                if (("猎").equals(s)) {
+                    continue;
                 }
 
                 String jobInfoUrl = html.css("div.job-info").links().nodes().get(0).toString();
                 logger.info("猎聘的链接...."+jobInfoUrl);
-                page.addTargetRequest(jobInfoUrl);
+
+                if (jobInfoUrl.contains("https://")) {
+                    page.addTargetRequest(jobInfoUrl);
+                }
 
             }
 
             //获取下一页的链接
-/*
             if (temp <= countPage) {
-                String nextPage = "https://www.liepin.com/zhaopin/?isAnalysis=&init=-1&searchType=1&headckid=6e5ef7c1d0a98349&dqs=&pubTime=&compkind=&fromSearchBtn=2&salary=&sortFlag=15&ckid=6e5ef7c1d0a98349&degradeFlag=0&industryType=&jobKind=2&industries=&compscale=&clean_condition=&key=%E5%9F%8E%E5%B8%82%E7%BB%8F%E7%90%86+%E7%89%A9%E6%B5%81%E8%A1%8C%E4%B8%9A&siTag=ddctnJM0S3MU_2ukca2wuA~ZmXRTG3Nx-lODupCxpuySA&d_sfrom=search_prime&d_ckId=b9d6532b1aacd45597ab30229ccac95d&d_curPage=0&d_pageSize=40&d_headId=b9d6532b1aacd45597ab30229ccac95d&curPage="+temp;
+                String nextPage = "https://www.liepin.com/zhaopin/?isAnalysis=&init=-1&searchType=1&headckid=e503dcb7ab9da65c&dqs=&pubTime=&compkind=&fromSearchBtn=2&salary=&sortFlag=15&ckid=e503dcb7ab9da65c&degradeFlag=0&industryType=industry_09&jobKind=2&industries=250&compscale=&clean_condition=&key=%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%96%BD&siTag=63_FpJMXC-GhCqybeWKICA~ZJD6Eu9a0hYZwbIB9yR3VQ&d_sfrom=search_prime&d_ckId=14f9d589c7a56753b145c785bd9fc60c&d_curPage=0&d_pageSize=40&d_headId=14f9d589c7a56753b145c785bd9fc60c&curPage="+temp;
                 logger.info("当前页..."+temp);
                 logger.info("猎聘下一页链接......."+nextPage);
                 page.addTargetRequest(nextPage);
                 temp++;
             }
 
-*/
 
         }
 
@@ -244,12 +226,12 @@ public class LiePinJobProcessor implements PageProcessor {
     //fixedDelay 每隔多久
     @Scheduled(initialDelay = 1000,fixedDelay = 100*1000)
     public void getLiePieJobInfo(){
-        List<IpPool> iPs = ipPoolService.getIPs();
-        HttpClientDownloader httpClientDownloader = new HttpClientDownloader();
-        httpClientDownloader.setProxyProvider(SimpleProxyProvider.from(new Proxy(iPs.get(0).getIp(),Integer.parseInt(iPs.get(0).getPort())),new Proxy(iPs.get(1).getIp(),Integer.parseInt(iPs.get(1).getPort()))));
+        //List<IpPool> iPs = ipPoolService.getIPs();
+        //HttpClientDownloader httpClientDownloader = new HttpClientDownloader();
+        //httpClientDownloader.setProxyProvider(SimpleProxyProvider.from(new Proxy(iPs.get(0).getIp(),Integer.parseInt(iPs.get(0).getPort())),new Proxy(iPs.get(1).getIp(),Integer.parseInt(iPs.get(1).getPort()))));
 
         Spider.create(new LiePinJobProcessor())
-                .addUrl(url).setDownloader(httpClientDownloader)
+                .addUrl(url)//.setDownloader(httpClientDownloader)
                 .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(5000)))
                 .thread(20)
                 .addPipeline(saveLiePinJonInfoPipeline)

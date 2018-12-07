@@ -3,6 +3,8 @@ package com.juban.mapper;
 import com.juban.pojo.IpPool;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 public interface IpPoolMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -18,4 +20,7 @@ public interface IpPoolMapper {
 
     @Select("SELECT id,ip, port , ip_status ,create_time,update_time FROM ip_pool WHERE ip_status = 1 LIMIT 1")
     IpPool getAvailableIP();
+
+    @Select("select * from ip_pool")
+    List<IpPool> getAllIPs();
 }

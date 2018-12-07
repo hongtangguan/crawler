@@ -12,4 +12,6 @@ public interface IPPoolService {
 
     void updateIPStatus(IpPool ipPool);
 
+
+    List<IpPool> getAllIPs();
 }

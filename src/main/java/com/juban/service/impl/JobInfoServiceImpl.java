@@ -68,4 +68,8 @@ public class JobInfoServiceImpl implements JobInfoService {
 
     }
 
+    @Override
+    public List<JobInfo> getAllJob() {
+        return jobInfoMapper.getAllJob();
+    }
 }

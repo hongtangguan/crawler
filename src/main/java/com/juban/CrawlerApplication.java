@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Properties;
 
+
 @SpringBootApplication
 @EnableScheduling
 @MapperScan("com.juban.mapper")

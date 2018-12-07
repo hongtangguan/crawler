@@ -84,4 +84,9 @@ public class IPPoolServiceImpl implements IPPoolService {
         ipPool.setIpStatus(new Integer(0).byteValue());
         ipPoolMapper.updateByPrimaryKey(ipPool);
     }
+
+    @Override
+    public List<IpPool> getAllIPs() {
+        return ipPoolMapper.getAllIPs();
+    }
 }

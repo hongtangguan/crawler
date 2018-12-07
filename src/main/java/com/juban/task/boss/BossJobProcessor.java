@@ -14,7 +14,6 @@ import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.downloader.HttpClientDownloader;
-import us.codecraft.webmagic.downloader.selenium.SeleniumDownloader;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.proxy.Proxy;
 import us.codecraft.webmagic.proxy.SimpleProxyProvider;
@@ -190,7 +189,7 @@ public class BossJobProcessor implements PageProcessor {
         httpClientDownloader.setProxyProvider(SimpleProxyProvider.from(new Proxy(IP,Integer.parseInt(PORT))));
 
         Spider.create(new BossJobProcessor())
-                .addUrl(url).setDownloader(new SeleniumDownloader("E:\\chromedriver.exe"))
+                .addUrl(url)//.setDownloader(new SeleniumDownloader("E:\\chromedriver.exe"))
                 .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(100000)))
                 .thread(10)
                 .addPipeline(saveBossJonInfoPipeline)
