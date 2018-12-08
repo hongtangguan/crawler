@@ -1,6 +1,6 @@
 package com.juban.pojo;
 
-import com.juban.utils.PagesParam;
+import com.juban.common.PagesParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

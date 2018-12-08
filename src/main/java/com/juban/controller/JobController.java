@@ -2,13 +2,17 @@ package com.juban.controller;
 
 import com.juban.pojo.GetAllJobsRequestDto;
 import com.juban.pojo.JobInfo;
+import com.juban.common.MyException;
+import com.juban.common.Response;
 import com.juban.service.IPPoolService;
 import com.juban.service.JobInfoService;
 import com.juban.utils.ExcelData;
 import com.juban.utils.ExportExcelUtils;
-import com.juban.utils.PagesDto;
+import com.juban.common.PagesDto;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +23,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/job")
+@Api("获取信息相关接口")
 public class JobController {
     @Autowired
     private JobInfoService jobInfoService;
@@ -29,9 +34,11 @@ public class JobController {
 
     @RequestMapping(value = "/getAllJobs",method = RequestMethod.GET)
     @ApiOperation("分页获取工作信息列表")
-    public PagesDto<JobInfo> getAllJobs(GetAllJobsRequestDto params){
+    public Response<PagesDto<JobInfo>>
+
+     getAllJobs(@Validated GetAllJobsRequestDto params){
         PagesDto<JobInfo> allJobs = jobInfoService.getAllJobs(params);
-        return  allJobs;
+        return new Response<>(allJobs,"查询成功",1);
     }
 
 
@@ -102,6 +109,21 @@ public class JobController {
         ExportExcelUtils.exportExcel(data, out);
         out.close();*//*
         ExportExcelUtils.exportExcel(response,"hello.xlsx",data);*/
+    }
+
+    @RequestMapping(value = "/testerror",method = RequestMethod.GET)
+    @ApiOperation("测试接口")
+    public String test(){
+
+        //int i= 1/0;
+
+        if (true) {
+            throw new MyException(1212,"没有查到");
+        }
+
+        //int i= 1/0;
+        return "";
+
     }
 
 

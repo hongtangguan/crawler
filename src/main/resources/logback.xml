@@ -32,7 +32,7 @@
 
         <!-- 每天产生一个日志文件,保存30天的日志文件 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/qianchengwuyou.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/ProjectLog.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
 

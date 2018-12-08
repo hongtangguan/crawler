@@ -22,6 +22,6 @@ public interface JobInfoMapper {
 
     List<JobInfo> getAllJobs(GetAllJobsRequestDto params);
 
-    @Select("select * from job_info")
+    @Select("select * from job_info limit 30")
     List<JobInfo> getAllJob();
 }

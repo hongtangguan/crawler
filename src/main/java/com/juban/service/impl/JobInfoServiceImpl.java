@@ -7,7 +7,7 @@ import com.juban.mapper.JobInfoMapper;
 import com.juban.pojo.GetAllJobsRequestDto;
 import com.juban.pojo.JobInfo;
 import com.juban.service.JobInfoService;
-import com.juban.utils.PagesDto;
+import com.juban.common.PagesDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

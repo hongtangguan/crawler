@@ -7,7 +7,7 @@ import com.juban.task.boss.BossTest;
 import com.juban.task.lagou.LagouProcessor;
 import com.juban.task.liepin.LiePinJobProcessor;
 import com.juban.task.qianchengwuyou.QianChenJobProcessor;
-import com.juban.utils.PagesDto;
+import com.juban.common.PagesDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
