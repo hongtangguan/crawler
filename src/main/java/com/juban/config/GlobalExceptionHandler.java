@@ -28,9 +28,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Response<String> myExceptionErrorHandler(Exception ex) throws Exception {
-        logger.error("myExceptionErrorHandler info:{}", ex.getMessage());
+        logger.error("myExceptionErrorHandler info:{}", ex);
         Response<String> r = new Response<>();
-        r.setMsg("位置错误:"+ex.getMessage());
+        r.setMsg("未知错误:"+ex);
         r.setCode(9999);
         return r;
     }

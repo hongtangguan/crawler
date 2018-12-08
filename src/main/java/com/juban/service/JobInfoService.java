@@ -5,12 +5,10 @@ import com.juban.pojo.GetAllJobsRequestDto;
 import com.juban.pojo.JobInfo;
 import com.juban.common.PagesDto;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface JobInfoService {
-
-
-    JobInfo getById(int id);
 
 
     void insertJob(JobInfo jobInfo);
@@ -19,4 +17,5 @@ public interface JobInfoService {
 
     List<JobInfo> getAllJob();
 
+    void exportExcel(HttpServletResponse response) throws Exception;
 }
