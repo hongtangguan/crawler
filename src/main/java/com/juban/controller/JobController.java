@@ -55,8 +55,7 @@ public class JobController {
     @ApiOperation("测试接口")
     public String test(@Validated GetAllJobsRequestDto aaa){
         String s = null;
-        s.length();
-
+        s.length();//
         if (true) {
             throw new MyException(1212,"没有查到");
         }
