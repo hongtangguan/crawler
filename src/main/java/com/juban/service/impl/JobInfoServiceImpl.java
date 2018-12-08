@@ -3,6 +3,8 @@ package com.juban.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.juban.common.ConstantCode;
+import com.juban.common.MyException;
 import com.juban.common.PagesDto;
 import com.juban.mapper.JobInfoMapper;
 import com.juban.pojo.GetAllJobsRequestDto;
@@ -74,6 +76,16 @@ public class JobInfoServiceImpl implements JobInfoService {
     @Override
     public List<JobInfo> getAllJob() {
         return jobInfoMapper.getAllJob();
+    }
+
+
+    @Override
+    public JobInfo getJobById(Integer id) {
+        JobInfo jobInfo = jobInfoMapper.selectByPrimaryKey(id);
+        if (jobInfo == null) {
+            throw new MyException(ConstantCode.JOB_NOT_EXISTS,"该记录不存在");
+        }
+        return jobInfo;
     }
 
     @Override

@@ -20,4 +20,8 @@ public class ConstantCode {
 
     public final static String SUCESS = "0000";
 
+
+    public final static Integer JOB_NOT_EXISTS = 1000;
+
+
 }

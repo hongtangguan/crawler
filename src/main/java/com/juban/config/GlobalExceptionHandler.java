@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
     public Response<String> myExceptionErrorHandler(Exception ex) throws Exception {
         logger.error("myExceptionErrorHandler info:{}", ex);
         Response<String> r = new Response<>();
-        r.setMsg("未知错误:"+ex);
+        r.setMsg("未知错误");
         r.setCode(9999);
         return r;
     }
