@@ -15,7 +15,7 @@ public class GetAllJobsRequestDto extends PagesParam{
     private String jobName;
 
     @ApiModelProperty("工资")
-    private String salary;
+    private String sources;
 
 
     public String getCompanyName() {
@@ -34,11 +34,11 @@ public class GetAllJobsRequestDto extends PagesParam{
         this.jobName = jobName;
     }
 
-    public String getSalary() {
-        return salary;
+    public String getSources() {
+        return sources;
     }
 
-    public void setSalary(String salary) {
-        this.salary = salary;
+    public void setSources(String sources) {
+        this.sources = sources;
     }
 }

@@ -192,8 +192,8 @@
         <if test="jobName!=null and jobName!=''">
           and job_name like concat('%',#{jobName},'%')
         </if>
-        <if test="salary!=null and salary!=''">
-          and salary like concat('%',#{salary},'%')
+        <if test="sources!=null and sources!=''">
+          and sources like concat('%',#{sources},'%')
         </if>
 
 

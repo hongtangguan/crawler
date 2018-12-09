@@ -421,11 +421,11 @@
                         <form-item label="公司名称">
                             <Input style="line-height: 20px;" placeholder="请输入公司名称" v-model="queryData.companyName"></Input>
                         </form-item>
-                        <form-item label="职位">
+                        <form-item label="职位名称">
                             <Input style="line-height: 20px;" placeholder="请输入职位名称" v-model="queryData.jobName"></Input>
                         </form-item>
-                        <form-item label="薪资">
-                            <Input style="line-height: 20px;" placeholder="请输入薪资" v-model="queryData.salary"></Input>
+                        <form-item label="来源平台">
+                            <Input style="line-height: 20px;" placeholder="请输入来源" v-model="queryData.sources"></Input>
                         </form-item>
                         <i-button @click="findAll('search')" type="primary">查询</i-button>
                         <i-button @click="exportExcel" type="primary">导出</i-button>
