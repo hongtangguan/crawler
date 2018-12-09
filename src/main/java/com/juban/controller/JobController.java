@@ -38,7 +38,7 @@ public class JobController {
 
 
     @RequestMapping(value = "/excel", method = RequestMethod.GET)
-    @ApiOperation(value = "导出到excel",produces="application/octet-stream")
+    @ApiOperation(value = "导出到excel")//,produces="application/octet-stream"
     public Response excel(HttpServletResponse response) throws Exception {
         jobInfoService.exportExcel(response);
         return new Response<>(null,"导出成功",ConstantCode.SUCCESSED);
