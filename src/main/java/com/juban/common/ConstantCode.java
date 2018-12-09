@@ -5,7 +5,7 @@ public class ConstantCode {
 
 
     /**
-     * 成功
+     * 成功.
      */
     public static int SUCCESSED = 1;
     /**
