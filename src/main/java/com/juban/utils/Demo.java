@@ -11,7 +11,7 @@ public class Demo
         System.out.println(html.xpath("//p/html()").toString().replaceAll("<em..*",""));
 
         System.out.println(html.xpath("//p/text()").toString().replaceAll(s1,""));
-
+//
         System.out.println(html.xpath("//p/a/text()"));*//*
 
       *//*  Html html = new Html("<p>20-99人<em class=\"vline\"></em><a ka=\"job-detail-brandindustry\" href=\"/i100020/\">互联网</a></p>");
