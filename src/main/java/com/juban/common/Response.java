@@ -1,7 +1,10 @@
 package com.juban.common;
 
-import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+@ApiModel("综合返回实体")
 public class Response<T> implements Serializable {
 
 
@@ -10,14 +13,17 @@ public class Response<T> implements Serializable {
     /**
      * 返回结果集
      */
+    @ApiModelProperty("返回数据")
     private T result;
     /**
      * 返回消息
      */
+    @ApiModelProperty("返回消息")
     private String msg;
     /**
      * 响应码
      */
+    @ApiModelProperty("响应码")
     private Integer code;
 
 

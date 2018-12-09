@@ -11,7 +11,12 @@
     <meta name="keywords" content="AdminLTE2定制版">
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
 
+    <script src="js/vuejs-2.5.16.js"></script>
+
+
+
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
 
@@ -37,6 +42,26 @@
     <link rel="stylesheet" href="plugins/ionslider/ion.rangeSlider.skinNice.css">
     <link rel="stylesheet" href="plugins/bootstrap-slider/slider.css">
     <link rel="stylesheet" href="plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
+    <style>
+        #title-juban{
+            color: #ffffff;
+            font-size: 24px;
+            padding: 6px;
+            padding-left: 15px;
+            display: inline-block;
+            font-weight: 600;
+            font-family: -webkit-pictograph;
+        }
+        #dataList th{
+             width: 60px;
+         }
+        #dataList th:nth-child(7){
+            width: auto;
+        }
+
+    </style>
 </head>
 
 <body class="hold-transition skin-purple sidebar-mini">
@@ -45,23 +70,19 @@
 
     <!-- 页面头部 -->
     <header class="main-header">
-
-
         <!-- Logo -->
-        <a href="all-admin-index.html" class="logo">
+        <!--<a href="all-admin-index.html" class="logo">-->
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>数据</b></span>
+            <!--<span class="logo-mini"><b>数据</b></span>-->
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>数据</b>后台管理</span>
-        </a>
+            <!--<span class="logo-lg"><b>数据</b>后台管理</span>-->
+        <!--</a>-->
 
 
         <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top">
+        <nav class="navbar navbar-static-top" style="margin-left: 0">
             <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                <span class="sr-only">Toggle navigation</span>
-            </a>
+            <span id="title-juban">桔瓣科技</span>
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
@@ -143,6 +164,7 @@
                             <li class="footer"><a href="#">See All Messages</a></li>
                         </ul>
                     </li>
+
                     <!-- Notifications: style can be found in dropdown.less -->
                     <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -308,72 +330,72 @@
     <!-- 页面头部 /-->
 
     <!-- 导航侧栏 -->
-    <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                </div>
-                <div class="pull-left info">
-                    <p>张猿猿</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
-                </div>
-            </div>
-            <!-- search form -->
-            <!--<form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="搜索...">
-            <span class="input-group-btn">
-            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-            </button>
-          </span>
-        </div>
-    </form>-->
-            <!-- /.search form -->
+    <!--<aside class="main-sidebar">-->
+        <!--&lt;!&ndash; sidebar: style can be found in sidebar.less &ndash;&gt;-->
+        <!--<section class="sidebar">-->
+            <!--&lt;!&ndash; Sidebar user panel &ndash;&gt;-->
+            <!--<div class="user-panel">-->
+                <!--<div class="pull-left image">-->
+                    <!--<img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">-->
+                <!--</div>-->
+                <!--<div class="pull-left info">-->
+                    <!--<p>张猿猿</p>-->
+                    <!--<a href="#"><i class="fa fa-circle text-success"></i> 在线</a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; search form &ndash;&gt;-->
+            <!--&lt;!&ndash;<form action="#" method="get" class="sidebar-form">-->
+        <!--<div class="input-group">-->
+            <!--<input type="text" name="q" class="form-control" placeholder="搜索...">-->
+            <!--<span class="input-group-btn">-->
+            <!--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>-->
+            <!--</button>-->
+          <!--</span>-->
+        <!--</div>-->
+    <!--</form>&ndash;&gt;-->
+            <!--&lt;!&ndash; /.search form &ndash;&gt;-->
 
 
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            <ul class="sidebar-menu">
-       <!--         <li class="header">菜单</li>
+            <!--&lt;!&ndash; sidebar menu: : style can be found in sidebar.less &ndash;&gt;-->
+            <!--<ul class="sidebar-menu">-->
+       <!--&lt;!&ndash;         <li class="header">菜单</li>-->
 
-                <li id="admin-index"><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> <span>首页</span></a>
-                </li>-->
+                <!--<li id="admin-index"><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> <span>首页</span></a>-->
+                <!--</li>&ndash;&gt;-->
 
-                <!-- 菜单 -->
+                <!--&lt;!&ndash; 菜单 &ndash;&gt;-->
 
 
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-folder"></i> <span>用户管理</span>
-                        <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                    </a>
-                    <ul class="treeview-menu">
+                <!--<li class="treeview">-->
+                    <!--<a href="#">-->
+                        <!--<i class="fa fa-folder"></i> <span>用户管理</span>-->
+                        <!--<span class="pull-right-container">-->
+                        <!--<i class="fa fa-angle-left pull-right"></i>-->
+                    <!--</span>-->
+                    <!--</a>-->
+                    <!--<ul class="treeview-menu">-->
 
-<!--                        <li id="admin-login">
-                            <a href="all-admin-login.html">
-                                <i class="fa fa-circle-o"></i> 查询所有用户
-                            </a>
-                        </li>-->
+<!--&lt;!&ndash;                        <li id="admin-login">-->
+                            <!--<a href="all-admin-login.html">-->
+                                <!--<i class="fa fa-circle-o"></i> 查询所有用户-->
+                            <!--</a>-->
+                        <!--</li>&ndash;&gt;-->
 
-                    </ul>
-                </li>
+                    <!--</ul>-->
+                <!--</li>-->
 
-                <!-- 菜单 /-->
-            </ul>
-        </section>
-        <!-- /.sidebar -->
-    </aside>
+                <!--&lt;!&ndash; 菜单 /&ndash;&gt;-->
+            <!--</ul>-->
+        <!--</section>-->
+        <!--&lt;!&ndash; /.sidebar &ndash;&gt;-->
+    <!--</aside>-->
     <!-- 导航侧栏 /-->
 
     <!-- 内容区域 -->
     <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
 
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="margin-left: 0">
 
         <!-- 内容头部 -->
         <section class="content-header">
@@ -395,7 +417,19 @@
             <!-- .box-body -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">列表</h3>
+                    <i-form inline :label-width="120">
+                        <form-item label="公司名称">
+                            <Input style="line-height: 20px;" placeholder="请输入公司名称" v-model="queryData.companyName"></Input>
+                        </form-item>
+                        <form-item label="职位">
+                            <Input style="line-height: 20px;" placeholder="请输入职位名称" v-model="queryData.jobName"></Input>
+                        </form-item>
+                        <form-item label="薪资">
+                            <Input style="line-height: 20px;" placeholder="请输入薪资" v-model="queryData.salary"></Input>
+                        </form-item>
+                        <i-button @click="findAll('search')" type="primary">查询</i-button>
+                        <i-button @click="exportExcel" type="primary">导出</i-button>
+                    </i-form>
                 </div>
 
                 <div class="box-body">
@@ -404,7 +438,7 @@
                     <div class="table-box">
 
                         <!--工具栏-->
-                        <div class="pull-left">
+    <!--                    <div class="pull-left">
                             <div class="form-group form-inline">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default" title="新建"><i
@@ -424,22 +458,17 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="box-tools pull-right">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control input-sm" placeholder="搜索">
-                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                            </div>
-                        </div>
+                        </div>-->
+
                         <!--工具栏/-->
 
                         <!--数据列表-->
                         <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
+                                <!--<th class="" style="padding-right:0px;">-->
+                                    <!--<input id="selall" type="checkbox" class="icheckbox_square-blue">-->
+                                <!--</th>-->
                                 <th class="sorting_asc">公司名称</th>
                                 <th class="sorting_desc">公司行业</th>
                                 <th class="sorting_asc sorting_asc_disabled">公司人数</th>
@@ -455,20 +484,20 @@
                             <tbody>
 
                             <tr v-for="u in jobList">
-                                <td><input name="ids" type="checkbox"></td>
+                                <!--<td><input name="ids" type="checkbox"></td>-->
                                 <td>{{u.companyName}}</td>
                                 <td>{{u.companyIndustry}}</td>
                                 <td>{{u.companyPeople}}</td>
                                 <td>{{u.companyFinancing}}</td>
                                 <td>{{u.jobName}}</td>
+                                <td class="text-center">{{u.salary}}</td>
                                 <td class="text-center">{{u.jobInfo}}</td>
                                 <td class="text-center">{{u.jobAddress}}</td>
-                                <td class="text-center">{{u.salary}}</td>
                                 <td class="text-center">{{u.sources}}</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs" @click="findById(u.id)">编辑</button>
-                                </td>
+                                <!--<td class="text-center">-->
+                                    <!--<button type="button" class="btn bg-olive btn-xs">详情</button>-->
+                                    <!--<button type="button" class="btn bg-olive btn-xs" @click="findById(u.id)">编辑</button>-->
+                                <!--</td>-->
                             </tr>
 
                             </tbody>
@@ -549,44 +578,13 @@
 
 
                 </div>
-                <!-- /.box-body -->
-
-                <!-- .box-footer-->
-                <div class="box-footer">
-                    <div class="pull-left">
-                        <div class="form-group form-inline">
-                            总共2 页，共14 条数据。 每页
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select> 条
-                        </div>
-                    </div>
-
-                    <div class="box-tools pull-right">
-                        <ul class="pagination">
-                            <li>
-                                <a href="#" aria-label="Previous">首页</a>
-                            </li>
-                            <li><a href="#">上一页</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">下一页</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">尾页</a>
-                            </li>
-                        </ul>
-                    </div>
-
+                <div class="wrap-page">
+                <page
+                    :total="total"
+                    :current="current"
+                    @on-change="pageChange"
+                    show-elevator />
                 </div>
-                <!-- /.box-footer-->
-
 
             </div>
 
@@ -598,7 +596,7 @@
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <footer class="main-footer">
+    <footer class="main-footer" style="margin-left: 0">
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0.8
         </div>
@@ -654,9 +652,9 @@
 <script src="plugins/bootstrap-slider/bootstrap-slider.js"></script>
 <script src="plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-<script src="js/vuejs-2.5.16.js"></script>
 <script src="js/axios-0.18.0.js"></script>
 <script src="js/user.js"></script>
+
 <script>
     $(document).ready(function () {
         // 选择框
