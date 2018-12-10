@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -24,7 +25,7 @@ import java.util.Date;
 import java.util.List;
 
 
-//@Component
+@Component
 public class LiePinJobProcessor implements PageProcessor {
 
     private Logger logger = LoggerFactory.getLogger(LiePinJobProcessor.class);
@@ -46,7 +47,7 @@ public class LiePinJobProcessor implements PageProcessor {
     //private String url = "https://www.liepin.com/zhaopin/?init=-1&headckid=fc904682675eef4d&fromSearchBtn=2&imscid=R000000058&ckid=fc904682675eef4d&degradeFlag=0&key=java&siTag=k_cloHQj_hyIn0SLM9IfRg~fA9rXquZc5IkJpXC-Ycixw&d_sfrom=search_fp_bar&d_ckId=63ed22dfdda2d25375e7009a00704db4&d_curPage=0&d_pageSize=40&d_headId=63ed22dfdda2d25375e7009a00704db4&curPage=0";
 
     //B2B资源管理
-    private String url ="https://www.liepin.com/zhaopin/?industries=250&dqs=&salary=&jobKind=2&pubTime=&compkind=&compscale=&industryType=industry_09&searchType=1&clean_condition=&isAnalysis=&init=1&sortFlag=15&flushckid=0&fromSearchBtn=1&headckid=a28e5eb41d3ef97a&d_headId=b1dad03b1aa6838026b755e21cfe66a0&d_ckId=2816ba952df9ee0112ef56cc06fa7744&d_sfrom=search_prime&d_curPage=1&d_pageSize=40&siTag=i9Jq-FcUGTpC9QESjC5G3Q~ZJD6Eu9a0hYZwbIB9yR3VQ&key=%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%96%BD";
+    private String url ="https://www.liepin.com/zhaopin/?isAnalysis=&init=-1&searchType=1&headckid=f2fc2dbde07c48d4&flushckid=1&dqs=&pubTime=&compkind=&fromSearchBtn=2&salary=&sortFlag=15&ckid=f2fc2dbde07c48d4&industryType=industry_09&jobKind=&industries=250&compscale=&clean_condition=&key=%E8%B4%A8%E6%8E%A7&siTag=wS7ImNlYW-G3XIWgKJ8TCg~fA9rXquZc5IkJpXC-Ycixw&d_sfrom=search_prime&d_ckId=1aac1e5963430c81ba748f656aedb7f1&d_curPage=0&d_pageSize=40&d_headId=1aac1e5963430c81ba748f656aedb7f1";
 
     private static Integer countPage = 10;//总页码
 
@@ -117,7 +118,7 @@ public class LiePinJobProcessor implements PageProcessor {
 
             //获取下一页的链接
             if (temp <= countPage) {
-                String nextPage = "https://www.liepin.com/zhaopin/?isAnalysis=&init=-1&searchType=1&headckid=e503dcb7ab9da65c&dqs=&pubTime=&compkind=&fromSearchBtn=2&salary=&sortFlag=15&ckid=e503dcb7ab9da65c&degradeFlag=0&industryType=industry_09&jobKind=2&industries=250&compscale=&clean_condition=&key=%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%96%BD&siTag=63_FpJMXC-GhCqybeWKICA~ZJD6Eu9a0hYZwbIB9yR3VQ&d_sfrom=search_prime&d_ckId=14f9d589c7a56753b145c785bd9fc60c&d_curPage=0&d_pageSize=40&d_headId=14f9d589c7a56753b145c785bd9fc60c&curPage="+temp;
+                String nextPage = "https://www.liepin.com/zhaopin/?isAnalysis=&init=-1&searchType=1&headckid=f2fc2dbde07c48d4&flushckid=1&dqs=&pubTime=&compkind=&fromSearchBtn=2&salary=&sortFlag=15&ckid=f2fc2dbde07c48d4&industryType=industry_09&jobKind=&industries=250&compscale=&clean_condition=&key=%E8%B4%A8%E6%8E%A7&siTag=wS7ImNlYW-G3XIWgKJ8TCg~fA9rXquZc5IkJpXC-Ycixw&d_sfrom=search_prime&d_ckId=1aac1e5963430c81ba748f656aedb7f1&d_curPage=0&d_pageSize=40&d_headId=1aac1e5963430c81ba748f656aedb7f1&curPage="+temp;
                 logger.info("当前页..."+temp);
                 logger.info("猎聘下一页链接......."+nextPage);
                 page.addTargetRequest(nextPage);
