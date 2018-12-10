@@ -1,5 +1,8 @@
 package com.juban.task.lagou;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
@@ -10,9 +13,13 @@ import us.codecraft.webmagic.selector.JsonPathSelector;
 import us.codecraft.webmagic.utils.HttpConstant;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
+@Slf4j
 public class LaGouDemo implements PageProcessor {
+
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     int flag = 0;
     int mark = 0;
     int sun = 0;
@@ -53,6 +60,15 @@ public class LaGouDemo implements PageProcessor {
         page.putField("createTime",new JsonPathSelector("$.content.positionResult.result[*].createTime").selectList(page.getRawText()));
         page.putField("companyName",new JsonPathSelector("$.content.positionResult.result[*].companyFullName").selectList(page.getRawText()));
         page.putField("discription",new JsonPathSelector("$.content.positionResult.result[*].secondType").selectList(page.getRawText()));
+
+
+        List<String> list = new JsonPathSelector("$.content.positionResult.result[*].positionId").selectList(page.getRawText());
+
+        list.forEach( i -> {
+            logger.info("★............★https://www.lagou.com/jobs/"+i+".html");
+        } );
+
+
 
     }
 
@@ -103,7 +119,7 @@ public class LaGouDemo implements PageProcessor {
         Spider.create(new LaGouDemo())
                 .addUrl("https://www.lagou.com/jobs/positionAjax.json?city=%E6%9D%AD%E5%B7%9E&needAddtionalResult=false")//.setDownloader(httpClientDownloader)
                 //.setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(100000)))
-                .thread(20)
+                .thread(1)
 
                 //.addPipeline(saveLaGouJobInfoPipeline)
                 .run();

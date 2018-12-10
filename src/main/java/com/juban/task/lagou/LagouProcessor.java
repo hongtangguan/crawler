@@ -1,6 +1,7 @@
 package com.juban.task.lagou;
 
 import com.alibaba.fastjson.JSON;
+import com.juban.pojo.IpPool;
 import com.juban.pojo.JobInfo;
 import com.juban.service.IPPoolService;
 import org.apache.commons.collections.CollectionUtils;
@@ -10,16 +11,27 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.downloader.HttpClientDownloader;
+import us.codecraft.webmagic.model.HttpRequestBody;
 import us.codecraft.webmagic.processor.PageProcessor;
-import us.codecraft.webmagic.selector.Selectable;
+import us.codecraft.webmagic.proxy.Proxy;
+import us.codecraft.webmagic.proxy.SimpleProxyProvider;
+import us.codecraft.webmagic.scheduler.BloomFilterDuplicateRemover;
+import us.codecraft.webmagic.scheduler.QueueScheduler;
+import us.codecraft.webmagic.selector.JsonPathSelector;
+import us.codecraft.webmagic.utils.HttpConstant;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-//@Component
+@Component
 public class LagouProcessor implements PageProcessor {
 
     @Autowired
@@ -30,29 +42,25 @@ public class LagouProcessor implements PageProcessor {
     private Logger logger = LoggerFactory.getLogger(LagouProcessor.class);
 
     //
-    // private String url = "https://www.lagou.com/zhaopin/Java/2/filterOption=2";
-    private String url = "https://www.lagou.com/jobs/list_web?labelWords=&fromSearch=true&suginput=";
+    private String url = "https://www.lagou.com/jobs/positionAjax.json?city=%E6%9D%AD%E5%B7%9E&needAddtionalResult=false";
 
-    //private String url = "https://www.lagou.com/zhaopin/ceshigongchengshi/1/?filterOption=1"; //测试
-    //private String url = "https://www.lagou.com/zhaopin/webqianduan/?labelWords=label"; //前端
-    //private String url = "https://www.lagou.com/zhaopin/chanpinjingli1/1/?filterOption=3"; //产品经理
-    //private String url = "https://www.lagou.com/zhaopin/xiaoshouzhuanyuan1/1/?labelWords=label"; // 销售
 
-    ///private String url = "https://www.lagou.com/jobs/list_%E5%9F%8E%E5%B8%82%E7%BB%8F%E7%90%86?city=%E5%85%A8%E5%9B%BD&cl=false&fromSearch=true&labelWords=&suginput=";
 
     private static int temp = 2;//第二页开始往后
-    private static boolean flag = true;// 查询一共多少页标记
+   // private static boolean flag = true;// 查询一共多少页标记
     private static String countNum = "30"; //总页码. 30是默认值.
 
     private static String IP = "";//IP
     private static String PORT = "";//端口
+
+    int flag = 0;
 
     private Site site = Site.me()
             .setCharset("utf8")
             .setTimeOut(10*1000) //超时时间
             .setRetrySleepTime(3000) //重试时间
             .setRetryTimes(3)//尝试次数
-            .setSleepTime(3)
+            .setSleepTime(4000)
             .addHeader("Accept","application/json, text/javascript, */*; q=0.01")
             .addHeader("Accept-Encoding","gzip, deflate, br")
             .addHeader("Accept-Language","zh-CN,zh;q=0.9")
@@ -82,63 +90,80 @@ public class LagouProcessor implements PageProcessor {
     }
 
     @Override
-    public void process(Page page) {
+    public void process(Page page)  {
 
-/*        List<Selectable> nodes1 = page.getHtml().xpath("//*[@id=\"s_position_list\"]/div[2]/div/span").nodes();
-        for (Selectable selectable : nodes1) {
-            System.out.println("页码链接........"+selectable.links().toString());
-        }*/
+        logger.info("========="+page.getUrl().toString());
 
-
-        //获取页面所有节点
-        List<Selectable> nodes = page.getHtml().css("div#s_position_list a.position_link").nodes();
-        //List<Selectable> nodes = page.getHtml().css("li.con_list_item:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1)").nodes();
-/*        if (flag) {
-            //获取总的页码
-            countNum = page.getHtml().css("#s_position_list > div.item_con_pager > div > a:nth-child(5)", "text").toString();
-            logger.info("总页码......................"+countNum);
-            flag = false;
-        }*/
-        if (CollectionUtils.isEmpty(nodes)) {
-            //解析页面保存数据
-            //this.saveJobInfo(page);
-        } else {
-
-            for (Selectable node : nodes) {
-                String jobInfoUrl = node.links().toString();
-                //page.addTargetRequest(jobInfoUrl);
-                logger.info("爬取链接....."+jobInfoUrl);
-            }
-
-
-
-            //拉钩最多显示30页.
-         /*   if (temp < Integer.parseInt(countNum)){
-                String url = "https://www.lagou.com/zhaopin/java/"+temp+"/?filterOption=2";
-                logger.info("下一页链接....."+url);
-                page.addTargetRequest(url);
-                temp++;
-            }*/
-
-
-/*            Request[] requests = new Request[28];
-            Map<String,Object> map = new HashMap<String, Object>();
-            for(int i=1;i<requests.length;i++){
-                requests[i] = new Request("https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false");
-                requests[i].setMethod(HttpConstant.Method.POST);
-
-                    map.put("first","true");
-                    map.put("pn",i+1);
-                    map.put("kd","城市经理");
-                    requests[i].setRequestBody(HttpRequestBody.form(map,"utf-8"));
-                    page.addTargetRequest(requests[i]);
-
-                    logger.info("当前页★............"+i+1);
-
-            }*/
-
+        if (page.getUrl().toString().contains(".html")) {
+            this.saveJobInfo(page);
         }
+
+        List<String> list = null;
+        if (page.getUrl().toString().contains("=false")) {
+            this.processRequest(page);
+            list = new JsonPathSelector("$.content.positionResult.result[*].positionId").selectList(page.getRawText());
+        }
+
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if (CollectionUtils.isNotEmpty(list)) {
+
+            for (String s : list) {
+                page.addTargetRequest("https://www.lagou.com/jobs/"+s+".html");
+                logger.info("★............★https://www.lagou.com/jobs/"+s+".html");
+            }
+        }
+
+
+
     }
+
+    private void processRequest(Page page) {
+
+        System.out.println("★==="+page.getUrl());
+
+
+            if(flag==0)
+            {
+
+                Request[] requests = new Request[1];
+                Map<String,Object> map = new HashMap<String, Object>();
+                for(int i=0;i<requests.length;i++)
+                {
+                    requests[i] = new Request("https://www.lagou.com/jobs/positionAjax.json?city=%E6%9D%AD%E5%B7%9E&needAddtionalResult=false");
+                    requests[i].setMethod(HttpConstant.Method.POST);
+                    if(i==0)
+                    {
+                        map.put("first","true");
+                        map.put("pn",i+1);
+                        map.put("kd","java");
+                        requests[i].setRequestBody(HttpRequestBody.form(map,"utf-8"));
+                        page.addTargetRequest(requests[i]);
+
+                    }
+                    else
+                    {
+                        map.put("first","false");
+                        map.put("pn",i+1);
+                        map.put("kd","java");
+                        requests[i].setRequestBody(HttpRequestBody.form(map,"utf-8"));
+                        page.addTargetRequest(requests[i]);
+
+                    }
+                }
+
+                flag++;
+            }
+    }
+
+
+
+
 
     private void saveJobInfo(Page page) {
 
@@ -221,13 +246,16 @@ public class LagouProcessor implements PageProcessor {
    @Scheduled(initialDelay = 1000,fixedDelay = 24*60*1000)
     public void getLaGouJob(){
 
-        //HttpClientDownloader httpClientDownloader = new HttpClientDownloader();
-        //httpClientDownloader.setProxyProvider(SimpleProxyProvider.from(new Proxy(IP,Integer.parseInt(PORT))));
+       List<IpPool> iPs = ipPoolService.getIPs();
+
+       HttpClientDownloader httpClientDownloader = new HttpClientDownloader();
+        httpClientDownloader.setProxyProvider(SimpleProxyProvider.from(new Proxy(iPs.get(0).getIp(),Integer.parseInt(iPs.get(0).getPort())),
+                                                     new Proxy(iPs.get(1).getIp(),Integer.parseInt(iPs.get(1).getPort()))));
 
         Spider.create(new LagouProcessor())
-                .addUrl(url)//.setDownloader(httpClientDownloader)
-                //.setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(100000)))
-                .thread(1)
+                .addUrl(url).setDownloader(httpClientDownloader)
+                .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(100000)))
+                .thread(15)
                 .addPipeline(saveLaGouJobInfoPipeline)
                 .run();
     }
