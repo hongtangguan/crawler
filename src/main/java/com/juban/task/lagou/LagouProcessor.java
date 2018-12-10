@@ -9,6 +9,7 @@ import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -28,7 +29,9 @@ public class LagouProcessor implements PageProcessor {
 
     private Logger logger = LoggerFactory.getLogger(LagouProcessor.class);
 
-    private String url = "https://www.lagou.com/zhaopin/Java/2/filterOption=2";
+    //
+    // private String url = "https://www.lagou.com/zhaopin/Java/2/filterOption=2";
+    private String url = "https://www.lagou.com/jobs/list_web?labelWords=&fromSearch=true&suginput=";
 
     //private String url = "https://www.lagou.com/zhaopin/ceshigongchengshi/1/?filterOption=1"; //测试
     //private String url = "https://www.lagou.com/zhaopin/webqianduan/?labelWords=label"; //前端
@@ -65,7 +68,6 @@ public class LagouProcessor implements PageProcessor {
             .addHeader("X-Anit-Forge-Token","None")
             .addHeader("X-Requested-With","XMLHttpRequest");
 
-            ;
 
 
     //获取代理ip请求地址
@@ -82,6 +84,12 @@ public class LagouProcessor implements PageProcessor {
     @Override
     public void process(Page page) {
 
+/*        List<Selectable> nodes1 = page.getHtml().xpath("//*[@id=\"s_position_list\"]/div[2]/div/span").nodes();
+        for (Selectable selectable : nodes1) {
+            System.out.println("页码链接........"+selectable.links().toString());
+        }*/
+
+
         //获取页面所有节点
         List<Selectable> nodes = page.getHtml().css("div#s_position_list a.position_link").nodes();
         //List<Selectable> nodes = page.getHtml().css("li.con_list_item:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1)").nodes();
@@ -93,21 +101,24 @@ public class LagouProcessor implements PageProcessor {
         }*/
         if (CollectionUtils.isEmpty(nodes)) {
             //解析页面保存数据
-            this.saveJobInfo(page);
+            //this.saveJobInfo(page);
         } else {
 
             for (Selectable node : nodes) {
                 String jobInfoUrl = node.links().toString();
-                page.addTargetRequest(jobInfoUrl);
-            logger.info("爬取链接....."+jobInfoUrl);
+                //page.addTargetRequest(jobInfoUrl);
+                logger.info("爬取链接....."+jobInfoUrl);
             }
+
+
+
             //拉钩最多显示30页.
-            if (temp < Integer.parseInt(countNum)){
+         /*   if (temp < Integer.parseInt(countNum)){
                 String url = "https://www.lagou.com/zhaopin/java/"+temp+"/?filterOption=2";
                 logger.info("下一页链接....."+url);
                 page.addTargetRequest(url);
                 temp++;
-            }
+            }*/
 
 
 /*            Request[] requests = new Request[28];
@@ -207,7 +218,7 @@ public class LagouProcessor implements PageProcessor {
 
     //initialDelay 任务启动多久开始
     //fixedDelay 每隔多久,
-   //@Scheduled(initialDelay = 1000,fixedDelay = 24*60*1000)
+   @Scheduled(initialDelay = 1000,fixedDelay = 24*60*1000)
     public void getLaGouJob(){
 
         //HttpClientDownloader httpClientDownloader = new HttpClientDownloader();
@@ -216,7 +227,7 @@ public class LagouProcessor implements PageProcessor {
         Spider.create(new LagouProcessor())
                 .addUrl(url)//.setDownloader(httpClientDownloader)
                 //.setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(100000)))
-                .thread(20)
+                .thread(1)
                 .addPipeline(saveLaGouJobInfoPipeline)
                 .run();
     }

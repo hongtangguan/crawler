@@ -36,7 +36,7 @@ new Vue({
             var companyName = _this.queryData.companyName;
             var jobName = _this.queryData.jobName;
             var sources = _this.queryData.sources;
-            axios.get('job/getAllJobs?rows=' + rows + '&page=' + page + '&companyName=' + companyName + '&jobName=' + jobName + '&sources=' + sources)
+            axios.get('job/getAllJobs?rows=' + rows + '&page=' + page + '&companyName=' + companyName.trim() + '&jobName=' + jobName.trim() + '&sources=' + sources.trim())
                 .then(function (response) {
                     _this.jobList = response.data.result.rows;//响应数据给userList赋值
                     _this.total = response.data.result.total;
