@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -25,7 +24,7 @@ import java.util.Date;
 import java.util.List;
 
 
-@Component
+//@Component
 public class LiePinJobProcessor implements PageProcessor {
 
     private Logger logger = LoggerFactory.getLogger(LiePinJobProcessor.class);

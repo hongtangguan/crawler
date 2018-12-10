@@ -469,31 +469,31 @@
                                 <!--<th class="" style="padding-right:0px;">-->
                                     <!--<input id="selall" type="checkbox" class="icheckbox_square-blue">-->
                                 <!--</th>-->
-                                <th class="sorting_asc">公司名称</th>
-                                <th class="sorting_desc">公司行业</th>
-                                <th class="sorting_asc sorting_asc_disabled">公司人数</th>
-                                <th class="sorting_desc sorting_desc_disabled">融资情况</th>
-                                <th class="sorting">工作名称</th>
-                                <th class="text-center sorting">薪资带宽</th>
+                                <th class="text-center">公司名称</th>
+                                <th class="text-center">公司行业</th>
+                                <th class="text-center">公司人数</th>
+                                <th class="text-center">融资情况</th>
+                                <th class="text-center">工作名称</th>
+                                <th class="text-center">薪资带宽</th>
                                 <th class="text-center">招聘信息</th>
 
-                                <th class="sorting_desc sorting_desc_disabled">工作地址</th>
-                                <th class="sorting_desc sorting_desc_disabled">数据来源</th>
+                                <th class="text-center">工作地址</th>
+                                <th class="text-center">数据来源</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             <tr v-for="u in jobList">
                                 <!--<td><input name="ids" type="checkbox"></td>-->
-                                <td>{{u.companyName}}</td>
-                                <td>{{u.companyIndustry}}</td>
-                                <td>{{u.companyPeople}}</td>
-                                <td>{{u.companyFinancing}}</td>
-                                <td>{{u.jobName}}</td>
-                                <td class="text-center">{{u.salary}}</td>
-                                <td class="text-center">{{u.jobInfo}}</td>
-                                <td class="text-center">{{u.jobAddress}}</td>
-                                <td class="text-center">{{u.sources}}</td>
+                                <td style="display:table-cell; vertical-align:middle">{{u.companyName}}</td>
+                                <td style="display:table-cell; vertical-align:middle">{{u.companyIndustry}}</td>
+                                <td style="display:table-cell; vertical-align:middle">{{u.companyPeople}}</td>
+                                <td style="display:table-cell; vertical-align:middle">{{u.companyFinancing}}</td>
+                                <td style="display:table-cell; vertical-align:middle">{{u.jobName}}</td>
+                                <td style="display:table-cell; vertical-align:middle">{{u.salary}}</td>
+                                <td style="display:table-cell; vertical-align:middle">{{u.jobInfo}}</td>
+                                <td style="display:table-cell; vertical-align:middle">{{u.jobAddress}}</td>
+                                <td style="display:table-cell; vertical-align:middle">{{u.sources}}</td>
                                 <!--<td class="text-center">-->
                                     <!--<button type="button" class="btn bg-olive btn-xs">详情</button>-->
                                     <!--<button type="button" class="btn bg-olive btn-xs" @click="findById(u.id)">编辑</button>-->
