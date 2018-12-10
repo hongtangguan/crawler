@@ -31,11 +31,11 @@ new Vue({
             }
             //在当前方法中定义一个变量，表明是vue对象
             var _this = this;
-            var rows = _this.queryData.rows
-            var page = _this.queryData.page
-            var companyName = _this.queryData.companyName
-            var jobName = _this.queryData.jobName
-            var sources = _this.queryData.sources
+            var rows = _this.queryData.rows;
+            var page = _this.queryData.page;
+            var companyName = _this.queryData.companyName;
+            var jobName = _this.queryData.jobName;
+            var sources = _this.queryData.sources;
             axios.get('job/getAllJobs?rows=' + rows + '&page=' + page + '&companyName=' + companyName + '&jobName=' + jobName + '&sources=' + sources)
                 .then(function (response) {
                     _this.jobList = response.data.result.rows;//响应数据给userList赋值
