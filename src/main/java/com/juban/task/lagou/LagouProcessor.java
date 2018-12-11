@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
@@ -31,7 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+//@Component
 public class LagouProcessor implements PageProcessor {
 
     @Autowired
@@ -57,10 +56,10 @@ public class LagouProcessor implements PageProcessor {
 
     private Site site = Site.me()
             .setCharset("utf8")
-            .setTimeOut(10*1000) //超时时间
+            .setTimeOut(5000) //超时时间
             .setRetrySleepTime(3000) //重试时间
-            .setRetryTimes(3)//尝试次数
-            .setSleepTime(4000)
+            .setRetryTimes(2)//尝试次数
+            .setSleepTime(5000)
             .addHeader("Accept","application/json, text/javascript, */*; q=0.01")
             .addHeader("Accept-Encoding","gzip, deflate, br")
             .addHeader("Accept-Language","zh-CN,zh;q=0.9")
@@ -119,8 +118,6 @@ public class LagouProcessor implements PageProcessor {
             }
         }
 
-
-
     }
 
     private void processRequest(Page page) {
@@ -131,7 +128,7 @@ public class LagouProcessor implements PageProcessor {
             if(flag==0)
             {
 
-                Request[] requests = new Request[1];
+                Request[] requests = new Request[29];
                 Map<String,Object> map = new HashMap<String, Object>();
                 for(int i=0;i<requests.length;i++)
                 {
@@ -160,10 +157,6 @@ public class LagouProcessor implements PageProcessor {
                 flag++;
             }
     }
-
-
-
-
 
     private void saveJobInfo(Page page) {
 
@@ -237,7 +230,9 @@ public class LagouProcessor implements PageProcessor {
                 .setUpdateTime(date);
 
         logger.info("保存信息....."+ JSON.toJSONString(job));
-        page.putField("jobInfo",job);
+        if (StringUtils.isNotBlank(job.getCompanyName()) && StringUtils.isNotBlank(job.getJobName())) {
+            page.putField("jobInfo",job);
+        }
 
     }
 
@@ -255,7 +250,7 @@ public class LagouProcessor implements PageProcessor {
         Spider.create(new LagouProcessor())
                 .addUrl(url).setDownloader(httpClientDownloader)
                 .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(100000)))
-                .thread(15)
+                .thread(5)
                 .addPipeline(saveLaGouJobInfoPipeline)
                 .run();
     }

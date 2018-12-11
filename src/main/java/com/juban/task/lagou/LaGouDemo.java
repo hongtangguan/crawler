@@ -13,7 +13,6 @@ import us.codecraft.webmagic.selector.JsonPathSelector;
 import us.codecraft.webmagic.utils.HttpConstant;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 @Slf4j
 public class LaGouDemo implements PageProcessor {
@@ -52,9 +51,14 @@ public class LaGouDemo implements PageProcessor {
     @Override
     public void process(Page page) {
         this.processBeiJing(page);
+        //公司名称
+        page.putField("companyFullName",new JsonPathSelector("$.content.positionResult.result[*].companyFullName").selectList(page.getRawText()));
+        //工作名称
         page.putField("positionname",new JsonPathSelector("$.content.positionResult.result[*].positionName").selectList(page.getRawText()));
-        page.putField("workYear",new JsonPathSelector("$.content.positionResult.result[*].workYear").selectList(page.getRawText()));
+        //page.putField("workYear",new JsonPathSelector("$.content.positionResult.result[*].workYear").selectList(page.getRawText()));
+        //薪资
         page.putField("salary",new JsonPathSelector("$.content.positionResult.result[*].salary").selectList(page.getRawText()));
+        //
         page.putField("address",new JsonPathSelector("$.content.positionResult.result[*].city").selectList(page.getRawText()));
         page.putField("district",new JsonPathSelector("$.content.positionResult.result[*].district").selectList(page.getRawText()));
         page.putField("createTime",new JsonPathSelector("$.content.positionResult.result[*].createTime").selectList(page.getRawText()));
@@ -62,11 +66,11 @@ public class LaGouDemo implements PageProcessor {
         page.putField("discription",new JsonPathSelector("$.content.positionResult.result[*].secondType").selectList(page.getRawText()));
 
 
-        List<String> list = new JsonPathSelector("$.content.positionResult.result[*].positionId").selectList(page.getRawText());
+        //List<String> list = new JsonPathSelector("$.content.positionResult.result[*].positionId").selectList(page.getRawText());
 
-        list.forEach( i -> {
+/*        list.forEach( i -> {
             logger.info("★............★https://www.lagou.com/jobs/"+i+".html");
-        } );
+        } );*/
 
 
 

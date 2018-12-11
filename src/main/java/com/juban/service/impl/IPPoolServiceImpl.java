@@ -21,7 +21,8 @@ public class IPPoolServiceImpl implements IPPoolService {
     private IpPoolMapper ipPoolMapper;
 
     //获取代理ip请求地址
-    private static String PROXYIPURL = "http://api.xdaili.cn/xdaili-api//greatRecharge/getGreatIp?spiderId=eafbee03e0584391b7f4a6cb8cea286e&orderno=YZ201811289790YvQMoM&returnType=2&count=2";
+    //private static String PROXYIPURL = "http://api.xdaili.cn/xdaili-api//greatRecharge/getGreatIp?spiderId=eafbee03e0584391b7f4a6cb8cea286e&orderno=YZ201811289790YvQMoM&returnType=2&count=2";
+    private static String PROXYIPURL = "http://www.xiongmaodaili.com/xiongmao-web/api/glip?secret=660b6832c161ce6a4eae6f4056faf39e&orderNo=GL20181211142127nChLHQRQ&count=3&isTxt=0&proxyType=1";
 
     private Logger logger = LoggerFactory.getLogger(IPPoolServiceImpl.class);
 
@@ -33,7 +34,7 @@ public class IPPoolServiceImpl implements IPPoolService {
         logger.info("请求获取新的ip开始.....................................");
         //解析数据
         JSONObject jsonObject = JSONObject.parseObject(res);
-        String result = jsonObject.getString("RESULT");
+        String result = jsonObject.getString("obj");
         List<IpPool> ipPools = JSONObject.parseArray(result, IpPool.class);
         logger.info("获取到的ip:....."+JSON.toJSONString(ipPools));
         return ipPools;
