@@ -92,7 +92,7 @@ public class BossTest  extends HttpClientDownloader implements PageProcessor{
 
         //List<IpPool> iPs = IPPoolUtils.getIPs();
 
-        Spider spider = Spider.create(new BossTest()).addUrl("https://www.zhipin.com/job_detail/?query=%E4%BA%91%E9%B8%9F&scity=101210100&industry=100502&position=")
+        Spider spider = Spider.create(new BossTest()).addUrl("https://www.zhipin.com/i100502-c101210100/?query=%E5%BE%B7%E9%82%A6&page=1&ka=page-1")
                 ;
         HttpClientDownloader downloader = new HttpClientDownloader(){
 
@@ -127,18 +127,18 @@ public class BossTest  extends HttpClientDownloader implements PageProcessor{
     @Override
     public void process(Page page) {
 
-  /*      if (flag) {
+        if (flag) {
             for (int i=temp; i<countPage; i++) {
                 //if (temp <= countPage) {
                 //https://www.zhipin.com/c101210100/?query=%E6%B5%8B%E8%AF%95&page=1&ka=page-1
-                String nextPage ="https://www.zhipin.com/c101210100/?query=java&page="+i+"&ka=page-"+i;
+                String nextPage ="https://www.zhipin.com/i100502-c101210100/?query=%E5%BE%B7%E9%82%A6&page="+i+"&ka=page-"+i;
                 logger.info("下一页的链接★"+i+"+......"+nextPage);
                 page.addTargetRequest(nextPage);
                 //temp++;
                 //}
             }
             flag = false;
-        }*/
+        }
 
 
 
