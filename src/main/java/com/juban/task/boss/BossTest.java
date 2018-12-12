@@ -39,7 +39,7 @@ public class BossTest  extends HttpClientDownloader implements PageProcessor{
     private static String IP = "";//IP
     private static String PORT = "";//端口
 
-    private static Integer countPage = 9;//总页码
+    private static Integer countPage = 4;//总页码
 
     private static Integer temp = 2;//页码临时记录
 
@@ -92,7 +92,7 @@ public class BossTest  extends HttpClientDownloader implements PageProcessor{
 
         //List<IpPool> iPs = IPPoolUtils.getIPs();
 
-        Spider spider = Spider.create(new BossTest()).addUrl("https://www.zhipin.com/i100502-c101210100/?query=%E5%BE%B7%E9%82%A6&page=1&ka=page-1")
+        Spider spider = Spider.create(new BossTest()).addUrl("https://www.zhipin.com/i100502-c100010000/?query=%E9%87%87%E8%B4%AD%E7%BB%8F%E7%90%86&page=1&ka=page-1")
                 ;
         HttpClientDownloader downloader = new HttpClientDownloader(){
 
@@ -131,7 +131,7 @@ public class BossTest  extends HttpClientDownloader implements PageProcessor{
             for (int i=temp; i<countPage; i++) {
                 //if (temp <= countPage) {
                 //https://www.zhipin.com/c101210100/?query=%E6%B5%8B%E8%AF%95&page=1&ka=page-1
-                String nextPage ="https://www.zhipin.com/i100502-c101210100/?query=%E5%BE%B7%E9%82%A6&page="+i+"&ka=page-"+i;
+                String nextPage ="https://www.zhipin.com/i100502-c100010000/?query=%E9%87%87%E8%B4%AD%E7%BB%8F%E7%90%86&page="+i+"&ka=page-"+i;
                 logger.info("下一页的链接★"+i+"+......"+nextPage);
                 page.addTargetRequest(nextPage);
                 //temp++;
