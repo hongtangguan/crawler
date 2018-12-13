@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.*;
 import us.codecraft.webmagic.downloader.HttpClientDownloader;
 import us.codecraft.webmagic.processor.PageProcessor;
@@ -24,7 +23,7 @@ import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.Date;
 import java.util.List;
-@Component
+//@Component
 public class BossTest  extends HttpClientDownloader implements PageProcessor{
 
 

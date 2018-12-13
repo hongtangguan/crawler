@@ -1,13 +1,6 @@
 package com.juban;
 
-import com.juban.pojo.GetAllJobsRequestDto;
-import com.juban.pojo.JobInfo;
-import com.juban.service.JobInfoService;
-import com.juban.task.boss.BossTest;
-import com.juban.task.lagou.LagouProcessor;
-import com.juban.task.liepin.LiePinJobProcessor;
-import com.juban.task.qianchengwuyou.QianChenJobProcessor;
-import com.juban.common.PagesDto;
+import com.juban.task.lagou.LaGouDemo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +13,7 @@ public class CrawlerApplicationTests {
 
 	//@Autowired
 	//private ZhiLian zhiLian;
+/*
     @Autowired
     private JobInfoService jobInfoService;
 
@@ -88,5 +82,30 @@ public class CrawlerApplicationTests {
         PagesDto<JobInfo> allJobs = jobInfoService.getAllJobs(params);
         System.out.println(allJobs.getRows());
     }
+*/
+
+
+    @Autowired
+    private LaGouDemo laGouDemo;
+
+
+	@Test
+	public void lagou()throws InterruptedException{
+		laGouDemo.task();
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

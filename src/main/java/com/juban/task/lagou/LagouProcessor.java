@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.juban.pojo.IpPool;
 import com.juban.pojo.JobInfo;
 import com.juban.service.IPPoolService;
+import com.juban.utils.IPPoolUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -56,7 +57,7 @@ public class LagouProcessor implements PageProcessor {
 
     private Site site = Site.me()
             .setCharset("utf8")
-            .setTimeOut(5000) //超时时间
+            .setTimeOut(8000) //超时时间
             .setRetrySleepTime(3000) //重试时间
             .setRetryTimes(2)//尝试次数
             .setSleepTime(5000)
@@ -82,7 +83,7 @@ public class LagouProcessor implements PageProcessor {
     private static String PROXYIPURL = "http://api.xdaili.cn/xdaili-api//greatRecharge/getGreatIp?spiderId=eafbee03e0584391b7f4a6cb8cea286e&orderno=YZ201811289790YvQMoM&returnType=2&count=10";
 
 
-            //这里注意.  先登录拉钩. 获取cookie.   不然加入自动登录功能.
+            //这里注意.  先登录拉钩. 获取cookie.   不然要自动登录
     @Override
     public Site getSite() {
         return site;
@@ -128,7 +129,7 @@ public class LagouProcessor implements PageProcessor {
             if(flag==0)
             {
 
-                Request[] requests = new Request[29];
+                Request[] requests = new Request[10];
                 Map<String,Object> map = new HashMap<String, Object>();
                 for(int i=0;i<requests.length;i++)
                 {
@@ -241,16 +242,22 @@ public class LagouProcessor implements PageProcessor {
    @Scheduled(initialDelay = 1000,fixedDelay = 24*60*1000)
     public void getLaGouJob(){
 
-       List<IpPool> iPs = ipPoolService.getIPs();
+       //List<IpPool> iPs = ipPoolService.getIPs();
+       List<IpPool> iPs = IPPoolUtils.getIPs();
+
+       try {
+           Thread.sleep(2000);
+       } catch (InterruptedException e) {
+           e.printStackTrace();
+       }
 
        HttpClientDownloader httpClientDownloader = new HttpClientDownloader();
-        httpClientDownloader.setProxyProvider(SimpleProxyProvider.from(new Proxy(iPs.get(0).getIp(),Integer.parseInt(iPs.get(0).getPort())),
-                                                     new Proxy(iPs.get(1).getIp(),Integer.parseInt(iPs.get(1).getPort()))));
+       httpClientDownloader.setProxyProvider(SimpleProxyProvider.from(new Proxy(iPs.get(0).getIp(),Integer.parseInt(iPs.get(0).getPort()))));
 
         Spider.create(new LagouProcessor())
                 .addUrl(url).setDownloader(httpClientDownloader)
                 .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(100000)))
-                .thread(5)
+                .thread(15)
                 .addPipeline(saveLaGouJobInfoPipeline)
                 .run();
     }

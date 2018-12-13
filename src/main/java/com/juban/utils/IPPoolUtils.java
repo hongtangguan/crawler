@@ -23,4 +23,14 @@ public class IPPoolUtils {
     }
 
 
+/*    public static void main(String[] args) {
+
+        String str = "[1,2,3]";
+
+        JSONArray objects = JSONObject.parseArray(str);
+        Object[] objects1 = objects.toArray();
+        System.out.println(Arrays.asList(objects1));
+    }*/
+
+
 }

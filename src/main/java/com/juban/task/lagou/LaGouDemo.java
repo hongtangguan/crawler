@@ -1,24 +1,37 @@
 package com.juban.task.lagou;
 
+import com.juban.pojo.IpPool;
+import com.juban.utils.IPPoolUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.downloader.HttpClientDownloader;
 import us.codecraft.webmagic.model.HttpRequestBody;
 import us.codecraft.webmagic.processor.PageProcessor;
+import us.codecraft.webmagic.proxy.Proxy;
+import us.codecraft.webmagic.proxy.SimpleProxyProvider;
+import us.codecraft.webmagic.scheduler.BloomFilterDuplicateRemover;
+import us.codecraft.webmagic.scheduler.QueueScheduler;
 import us.codecraft.webmagic.selector.JsonPathSelector;
 import us.codecraft.webmagic.utils.HttpConstant;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 @Slf4j
+@Component
 public class LaGouDemo implements PageProcessor {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
-
+    @Autowired
+    private SaveLaGouJobInfoPipeline saveLaGouJobInfoPipeline;
     int flag = 0;
     int mark = 0;
     int sun = 0;
@@ -28,7 +41,7 @@ public class LaGouDemo implements PageProcessor {
 
     private Site site = Site.me()
             .setCharset("utf8")
-            .setTimeOut(2000) //超时时间
+            .setTimeOut(6000) //超时时间
             .setRetrySleepTime(2000) //重试时间
             .setRetryTimes(1)//尝试次数
             .setSleepTime(3000)
@@ -58,12 +71,15 @@ public class LaGouDemo implements PageProcessor {
         //page.putField("workYear",new JsonPathSelector("$.content.positionResult.result[*].workYear").selectList(page.getRawText()));
         //薪资
         page.putField("salary",new JsonPathSelector("$.content.positionResult.result[*].salary").selectList(page.getRawText()));
-        //
-        page.putField("address",new JsonPathSelector("$.content.positionResult.result[*].city").selectList(page.getRawText()));
-        page.putField("district",new JsonPathSelector("$.content.positionResult.result[*].district").selectList(page.getRawText()));
-        page.putField("createTime",new JsonPathSelector("$.content.positionResult.result[*].createTime").selectList(page.getRawText()));
-        page.putField("companyName",new JsonPathSelector("$.content.positionResult.result[*].companyFullName").selectList(page.getRawText()));
-        page.putField("discription",new JsonPathSelector("$.content.positionResult.result[*].secondType").selectList(page.getRawText()));
+        //行业
+        page.putField("industryField",new JsonPathSelector("$.content.positionResult.result[*].industryField").selectList(page.getRawText()));
+        //融资情况
+        page.putField("financeStage",new JsonPathSelector("$.content.positionResult.result[*].financeStage").selectList(page.getRawText()));
+
+        //公司人数
+        page.putField("companySize",new JsonPathSelector("$.content.positionResult.result[*].companySize").selectList(page.getRawText()));
+
+        page.putField("firstType",new JsonPathSelector("$.content.positionResult.result[*].firstType").selectList(page.getRawText()));
 
 
         //List<String> list = new JsonPathSelector("$.content.positionResult.result[*].positionId").selectList(page.getRawText());
@@ -91,17 +107,17 @@ public class LaGouDemo implements PageProcessor {
         if(flag==0)
         {
 
-            Request[] requests = new Request[3];
+            Request[] requests = new Request[15];
             Map<String,Object> map = new HashMap<String, Object>();
             for(int i=0;i<requests.length;i++)
             {
-                requests[i] = new Request("https://www.lagou.com/jobs/positionAjax.json?city=%E6%9D%AD%E5%B7%9E&needAddtionalResult=false");
+                requests[i] = new Request("https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false");
                 requests[i].setMethod(HttpConstant.Method.POST);
                 if(i==0)
                 {
                     map.put("first","true");
                     map.put("pn",i+1);
-                    map.put("kd","java");
+                    map.put("kd","项目实施经理");
                     requests[i].setRequestBody(HttpRequestBody.form(map,"utf-8"));
                     page.addTargetRequest(requests[i]);
                 }
@@ -109,7 +125,7 @@ public class LaGouDemo implements PageProcessor {
                 {
                     map.put("first","false");
                     map.put("pn",i+1);
-                    map.put("kd","java");
+                    map.put("kd","项目实施经理");
                     requests[i].setRequestBody(HttpRequestBody.form(map,"utf-8"));
                     page.addTargetRequest(requests[i]);
                 }
@@ -118,17 +134,34 @@ public class LaGouDemo implements PageProcessor {
             flag++;
         }
     }
-    public static void main(String[] args) {
+   @Scheduled(initialDelay = 1000,fixedDelay = 24*60*1000)
+    public void task() throws InterruptedException {
+        List<IpPool> iPs = IPPoolUtils.getIPs();
+        //Thread.sleep(300);
+        HttpClientDownloader httpClientDownloader = new HttpClientDownloader();
+        httpClientDownloader.setProxyProvider(SimpleProxyProvider.from(new Proxy(iPs.get(0).getIp(),Integer.parseInt(iPs.get(0).getPort()))));
 
-        Spider.create(new LaGouDemo())
-                .addUrl("https://www.lagou.com/jobs/positionAjax.json?city=%E6%9D%AD%E5%B7%9E&needAddtionalResult=false")//.setDownloader(httpClientDownloader)
-                //.setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(100000)))
+
+        Spider.create(new LaGouDemo()).setDownloader(httpClientDownloader)
+                .addUrl("https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false")//.setDownloader(httpClientDownloader)
+                .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(100000)))
                 .thread(1)
-
-                //.addPipeline(saveLaGouJobInfoPipeline)
+                .addPipeline(saveLaGouJobInfoPipeline)
                 .run();
 
     }
+/*
+    public static void main(String[] args) {
+        Spider.create(new LaGouDemo())//.setDownloader(httpClientDownloader)
+                .addUrl("https://www.lagou.com/jobs/positionAjax.json?city=%E6%9D%AD%E5%B7%9E&needAddtionalResult=false")//.setDownloader(httpClientDownloader)
+                .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(100000)))
+                .thread(1)
+                //.addPipeline(saveLaGouJobInfoPipeline)
+                .run();
+    }*/
+
+
+
 }
 //https://www.lagou.com/jobs/positionAjax.json?city=%E6%9D%AD%E5%B7%9E&needAddtionalResult=false
 

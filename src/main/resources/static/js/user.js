@@ -44,7 +44,8 @@ new Vue({
                 })
                 .catch(function (error) {
                     console.log(error);
-                })
+                });
+
         },
         pageChange: function (page) {
             this.queryData.page = page;
