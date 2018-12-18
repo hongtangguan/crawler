@@ -182,10 +182,16 @@
 
 
   <select id="getAllJobs" resultType="com.juban.pojo.JobInfo">
-    select id, company_name,company_industry,company_people,company_financing,job_name,salary,job_info,job_res,job_address,sources FROM job_info
+    select id, company_name,company_industry,company_people,company_financing,job_name,salary,job_info,job_res,job_address,sources
+    ,CASE  when company_name = 'Boss' THEN 1
+          WHEN sources = '智联招聘' THEN 2
+          WHEN sources = '前程无忧' THEN 3
+          WHEN sources = '拉钩' THEN 4
+          WHEN sources = '猎聘' THEN 5
+          END AS pingtai
+    FROM job_info
     <where>
       1=1
-
         <if test="companyName!=null and companyName!=''">
           and company_name like concat('%',#{companyName},'%')
         </if>
@@ -195,9 +201,8 @@
         <if test="sources!=null and sources!=''">
           and sources like concat('%',#{sources},'%')
         </if>
-
-
     </where>
+    ORDER BY field(pingtai,1,2,3,4,5)
   </select>
 
 
