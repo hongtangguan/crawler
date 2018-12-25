@@ -91,7 +91,7 @@ public class JobInfoServiceImpl implements JobInfoService {
     @Override
     public void exportExcel(HttpServletResponse response) throws Exception {
 
-        logger.info("导出excel开始...............................");
+        logger.info("导出excel开始.................................");
         ExcelData data = new ExcelData();
         data.setName("zhaopin");
         //标题
