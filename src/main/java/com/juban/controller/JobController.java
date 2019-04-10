@@ -12,10 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
@@ -51,11 +48,11 @@ public class JobController {
         return new Response<>(jobInfo,"查询成功",ConstantCode.SUCCESSED);
     }
 
-    @RequestMapping(value = "/异常测试",method = RequestMethod.POST)
+    @RequestMapping(value = "/aaaaaaaaa",method = RequestMethod.POST)
     @ApiOperation("测试接口")
-    public String test(@Validated GetAllJobsRequestDto aaa){
-        String s = null;
-        s.length();//
+    public String test(@Validated @RequestBody GetAllJobsRequestDto aaa){
+//        String s = null;
+//        s.length();//
         if (true) {
             throw new MyException(1212,"没有查到");
         }

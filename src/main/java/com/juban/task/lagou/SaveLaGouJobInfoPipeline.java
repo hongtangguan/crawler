@@ -7,14 +7,13 @@ import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
 import java.util.List;
 
-@Component
+//@Component
 public class SaveLaGouJobInfoPipeline implements Pipeline {
     private Logger logger = LoggerFactory.getLogger(SaveLaGouJobInfoPipeline.class);
     @Autowired

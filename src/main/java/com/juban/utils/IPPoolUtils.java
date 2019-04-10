@@ -11,7 +11,7 @@ public class IPPoolUtils {
 
     public static List<IpPool> getIPs(){
 
-        String res = HttpClientUtils.doGet("http://www.xiongmaodaili.com/xiongmao-web/api/glip?secret=660b6832c161ce6a4eae6f4056faf39e&orderNo=GL20181211142127nChLHQRQ&count=1&isTxt=0&proxyType=1");
+        String res = HttpClientUtils.doGet("http://api.xdaili.cn/xdaili-api//greatRecharge/getGreatIp?spiderId=eafbee03e0584391b7f4a6cb8cea286e&orderno=YZ201811289790YvQMoM&returnType=2&count=2");
 
         System.out.println("请求获取新的ip开始.....................................");
         //解析数据
@@ -23,14 +23,21 @@ public class IPPoolUtils {
     }
 
 
-/*    public static void main(String[] args) {
+    public static String getIPs2(){
 
-        String str = "[1,2,3]";
+        String res = HttpClientUtils.doGet("http://api.xdaili.cn/xdaili-api//greatRecharge/getGreatIp?spiderId=eafbee03e0584391b7f4a6cb8cea286e&orderno=YZ201811289790YvQMoM&returnType=2&count=2");
 
-        JSONArray objects = JSONObject.parseArray(str);
-        Object[] objects1 = objects.toArray();
-        System.out.println(Arrays.asList(objects1));
-    }*/
+        return res;
+    }
+
+
+    public static void main(String[] args) {
+
+        String rss = getIPs2();
+
+        System.out.println(rss);
+
+    }
 
 
 }

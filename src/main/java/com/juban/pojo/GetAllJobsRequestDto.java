@@ -4,11 +4,14 @@ import com.juban.common.PagesParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.NotBlank;
+
 
 @ApiModel("获取招聘列表")
 public class GetAllJobsRequestDto extends PagesParam{
 
     @ApiModelProperty("公司名称")
+    @NotBlank(message = "公司名称不能为空")
     private String companyName;
 
     @ApiModelProperty("工作名字")
